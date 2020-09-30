@@ -28,48 +28,15 @@
               </div>
         </nav>
 
-        <div class="row">
-            <div class="col">
-                <p>
-                    Hola! Soy Andres, estudiante en Ingenieria en Tecnologias Computacionales.
-                </p>
-            </div>
+        <div class="container-fluid" id = "AboutMe">
+            <button style="margin: 10px;" type="button" class="btn btn-secondary" v-on:click = "isHidden = !isHidden">Do you wish to learn about me? click me!</button>
+            <p v-if="!isHidden"> {{aboutme}} </p>
         </div>
 
         <hr>
 
-        <div class="row">
-            <div class="col" style="background-color: lightgray;">
-                <h3>columna 1</h3>
-                <p>prueba</p>
-            </div>
-
-            <div class="col" style="background-color: rgba(211, 209, 209, 0.726);">
-                <h3>columna 2</h3>
-                <p>prueba</p>
-            </div>
-
-            <div class="col" style="background-color: rgba(211, 211, 211, 0.507);">
-                <h3>columna 1</h3>
-                <p>prueba</p>
-            </div>
-        </div>
-        
-        <div class="row">
-            <div class="col" style="background-color: lightgray;">
-                <h3>columna 1</h3>
-                <p>prueba</p>
-            </div>
-
-            <div class="col" style="background-color: rgba(211, 209, 209, 0.726);">
-                <h3>columna 2</h3>
-                <p>prueba</p>
-            </div>
-
-            <div class="col" style="background-color: rgba(211, 211, 211, 0.507);">
-                <h3>columna 1</h3>
-                <p>prueba</p>
-            </div>
+        <div class="container">
+            <p>aqui va educacion y demas</p>
         </div>
 
         <br>
@@ -79,7 +46,7 @@
         </div>
 
         
-        <div class="card-deck">
+        <div class="card-deck" style="margin-left: 20px; margin-right: 20px;">
             <div class="card text-white bg-secondary mb-3" id = "Skills">
                 <h3 style="text-align: center;">Languages</h3>
                 <ul>
@@ -112,6 +79,14 @@
         
         
         <script>
+            var des = new Vue ({
+                el: '#AboutMe',
+                data: {
+                    aboutme: "Hola! Soy Andres, estudiante en Ingenieria en Tecnologias Computacionales.", 
+                    isHidden: true
+                }
+            })
+
             var lng = new Vue ({
                 el: '#Skills',
                 data: {
@@ -122,7 +97,7 @@
             var fdb = new Vue ({
                 el: '#FDB',
                 data: {
-                    values: ['VueJs']
+                    values: ['Vuejs']
                 }
             })
 
