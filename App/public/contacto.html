@@ -7,6 +7,7 @@
 
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
         <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 
         <title>Contacto</title>
     </head>
@@ -27,9 +28,25 @@
               </div>
         </nav>
 
-        <div class="container">
-            <h1>Prueba</h1>
+        <div class="container" id = "Contacto">
+            <h1 style="padding-bottom: 10px;">Como contactarme</h1>
+            <h2>Mi email:</h2>
+            <p>orozcoandres.oa@gmail.com</p>
+            <button style="margin: 10px;" type="button" class="btn btn-secondary" v-on:click = "isHidden = !isHidden">Haz click para mis redes!</button>
+            <ul style="text-align: justify; margin-left: 10px;" v-if="!isHidden">
+                <li v-for="red in redes"><a>{{red}}</a></li>
+            </ul>
         </div>
+
+        <script>
+            var em = new Vue ({
+                el: '#Contacto',
+                data: {
+                    redes: ['https://github.com/castorenandres', 'https://www.linkedin.com/in/andres-orozco/'],
+                    isHidden: true
+                }
+            })
+        </script>
 
         <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>

@@ -15,7 +15,7 @@ exports.getLanguage = (callback) => {
 }
 
 exports.getFrameworks = (callback) => {
-    connection.query("SELECTO * FROM framework", function (error, results, fields) {
+    connection.query("SELECT * FROM framework", function (error, results, fields) {
         if (error) throw error;
         callback(results)
     });

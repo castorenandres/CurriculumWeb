@@ -31,13 +31,13 @@
 
         <div class="container-fluid" id = "AboutMe">
             <button style="margin: 10px;" type="button" class="btn btn-secondary" v-on:click = "isHidden = !isHidden">Do you wish to learn about me? click me!</button>
-            <p v-if="!isHidden"> {{aboutme}} </p>
+            <p style="text-align: justify;" v-if="!isHidden"> {{aboutme}} </p>
         </div>
 
         <hr>
 
-        <div class="container">
-            <p>aqui va educacion y demas</p>
+        <div class="container-fluid" id = "Educacion">
+            <p style="text-align: justify;">{{education}}</p>
         </div>
 
         <br>
@@ -47,30 +47,30 @@
         </div>
 
         
-        <div class="card-deck" style="margin-left: 20px; margin-right: 20px;">
-            <div class="card text-white bg-secondary mb-3" id = "Skills">
+        <div class="card-deck" style="margin-left: 20px; margin-right: 20px;" id = "App">
+            <div class="card text-white bg-secondary mb-3">
                 <h3 style="text-align: center;">Languages</h3>
                 <ul>
-                    <li v-for = "language in languages">
-                        {{language}}
+                    <li v-for = "language in languages" :key="language.title">
+                        {{language.nameLang}}
                     </li>
                 </ul>
             </div>
             
-            <div class="card text-white bg-secondary mb-3"  id = "FDB">
+            <div class="card text-white bg-secondary mb-3">
                 <h3 style="text-align: center;">Framework/Database</h3>
                 <ul>
-                    <li v-for = "value in values">
-                        {{value}}
+                    <li v-for = "frame in frames" :key="frame.title">
+                        {{frame.nameFrame}}
                     </li>
                 </ul>
             </div>
             
-            <div class="card text-white bg-secondary mb-3" id = "Spoken">
+            <div class="card text-white bg-secondary mb-3">
                 <h3 style="text-align: center;">Spoken</h3>
                 <ul>
-                    <li v-for = "spokenlng in spokenlngs">
-                        {{spokenlng}}
+                    <li v-for = "spoken in spokens" :key="spoken.title">
+                        {{spoken.nameSpoken}}
                     </li>
                 </ul>
             </div>
@@ -83,29 +83,41 @@
             var des = new Vue ({
                 el: '#AboutMe',
                 data: {
-                    aboutme: "Hola! Soy Andres, estudiante en Ingenieria en Tecnologias Computacionales.", 
+                    aboutme: "Hola! Soy Andres, estudiante en Ingenieria en Tecnologias Computacionales. Algunos pasatiempos que tengo son: jugar videojuegos, ver series y peliculas y escuchar musica. Durante la cuarentena he estado aprendiendo a tocar el piano, aun me falta mucho por aprender.", 
                     isHidden: true
                 }
             })
 
-            var lng = new Vue ({
-                el: '#Skills',
+            var edu = new Vue ({
+                el: '#Educacion',
                 data: {
-                    languages: ['C++', 'Python', 'Javascript']
+                    education: "Actualmente estoy estudiando Ingenieria en Tecnologias Computacionales en el Instituto Tecnologico y de Estudios Superiores de Monterrey (ITESM).Estoy en 7to semestre y la fecha de graduacion esperada es diciembre 2021."
                 }
             })
 
-            var fdb = new Vue ({
-                el: '#FDB',
+            var app = new Vue ({
+                el: '#App',
                 data: {
-                    values: ['Vuejs', 'Nodejs']
-                }
-            })
-
-            var spoken = new Vue ({
-                el: '#Spoken',
-                data: {
-                    spokenlngs: ['Spanish (native)', 'English (fluent)']
+                    languages: [],
+                    frames: [],
+                    spokens: []
+                },
+                mounted() {
+                    axios
+                        .get('http://localhost:4001/language')
+                        .then(response => {
+                            this.languages = response.data.lang
+                        })
+                    axios
+                        .get('http://localhost:4001/framework')
+                        .then(response => {
+                            this.frames = response.data.frame
+                        })
+                    axios
+                        .get('http://localhost:4001/spoken')
+                        .then(response => {
+                            this.spokens = response.data.spoken
+                        })
                 }
             })
         </script>
