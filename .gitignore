@@ -8,6 +8,9 @@
 *.log
 *.log.*
 *.sig
+*.sql
+
+node_modules
 
 pkg/
 src/
